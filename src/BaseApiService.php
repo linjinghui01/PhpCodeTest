@@ -11,7 +11,7 @@ abstract class BaseApiService
      * @param string $endpoint API endpoint being called.
      * @param array $requestData The request data being sent.
      */
-    protected function logRequest(string $endpoint, array $requestData): void
+    protected function logRequest(array $requestData): void
     {
         $logData = [
             'type' => 'request',
@@ -24,7 +24,6 @@ abstract class BaseApiService
     /**
      * Logs the response information to the PrestaShop database.
      *
-     * @param string $endpoint API endpoint being called.
      * @param array $responseData The response data received.
      */
     protected function logResponse(array $responseData): void
@@ -44,11 +43,11 @@ abstract class BaseApiService
      */
     private function insertLogToDatabase(array $logData): void
     {
-        // Use PrestaShop's Db class to insert log data into the database
-        $serializedData = serialize($logData);
-//        // use pSQL    PSQL function to avoid SQL injection
+//       // Use PrestaShop's Db class to insert log data into the database
+//        // use PSQL function to avoid SQL injection
+        
+//        $serializedData = serialize($logData);
 //        $sql = "INSERT INTO `" . _DB_PREFIX_ . "api_logs` (`log_data`) VALUES ('" . pSQL($serializedData) . "')";
-//        // 使用 PrestaShop 的 Db 类执行 SQL 语句
 //        return \Db::getInstance()->execute($sql);
     }
 
