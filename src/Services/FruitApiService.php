@@ -22,7 +22,6 @@ class FruitApiService extends BaseApiService
 
     public function getFruitList(): array
     {
-//        var_dump('getFruitList_function');
         try {
             $response = $this->client->request('GET', 'list');
             $this->logResponse($response->getStatusCode() . ' ' . $response->getBody()->getContents());
@@ -36,6 +35,7 @@ class FruitApiService extends BaseApiService
     public function buyFruit(int $id, int $qty): array
     {
         try {
+            var_dump('buyFruitFuction');
             $response = $this->client->request('POST', 'buy', [
                 'form_params' => [
                     'id' => $id,
