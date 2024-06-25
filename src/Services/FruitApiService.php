@@ -6,7 +6,6 @@ require_once '../vendor/autoload.php';
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
-var_dump(class_exists('GuzzleHttp\Client'));
 
 class FruitApiService extends BaseApiService
 {
@@ -23,6 +22,7 @@ class FruitApiService extends BaseApiService
 
     public function getFruitList(): array
     {
+//        var_dump('getFruitList_function');
         try {
             $response = $this->client->request('GET', 'list');
             $this->logResponse($response->getStatusCode() . ' ' . $response->getBody()->getContents());
