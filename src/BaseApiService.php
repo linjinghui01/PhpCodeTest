@@ -2,6 +2,10 @@
 
 declare(strict_types=1);
 
+//Use PrestaShop's
+//require __DIR__ . '/_path_to_prestashop_root_/bootstrap.php';
+//include_once(_PS_CONFIG_DIR_ . 'autoload.php');
+
 abstract class BaseApiService
 {
     /**
@@ -13,6 +17,10 @@ abstract class BaseApiService
     {
         // Implement actual logging logic here, e.g., writing to a file or database
         echo "Request Log: " . $requestInfo . PHP_EOL;
+        //Db::getInstance()->execute()
+        // $db->insert('request_log_table', ['request_info' => $requestInfo]);
+        // Replace with actual database logging implementation
+
     }
 
     /**
@@ -24,5 +32,28 @@ abstract class BaseApiService
     {
         // Implement actual logging logic here, e.g., writing to a file or database
         echo "Response Log: " . $responseInfo . PHP_EOL;
+        // $db->insert('response_log_table', ['response_info' => $responseInfo]);
+        // Replace with actual database logging implementation
+
+    }
+
+    /**
+     * Inserts log data into the database.
+     *
+     * @param string $logData The data to be inserted into the log table.
+     */
+    private function insertLogToDatabase($logData)
+    {
+        echo "Response Log: " . $logData . PHP_EOL;
+
+        // Use PrestaShop's Db class to insert log data into the database
+//        $date = date('Y-m-d H:i:s');
+//        $serializedData = serialize($logData);
+//        $sql = "INSERT INTO "._DB_PREFIX_."api_logs (date_add, log_data) VALUES (
+//            '".$date."',
+//            '".addslashes($serializedData)."'
+//        )";
+//
+//        return Db::getInstance()->execute($sql);
     }
 }
