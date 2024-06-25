@@ -8,7 +8,6 @@ abstract class BaseApiService
     /**
      * Logs the request information to the PrestaShop database.
      *
-     * @param string $endpoint API endpoint being called.
      * @param array $requestData The request data being sent.
      */
     protected function logRequest(array $requestData): void
@@ -45,7 +44,7 @@ abstract class BaseApiService
     {
 //       // Use PrestaShop's Db class to insert log data into the database
 //        // use PSQL function to avoid SQL injection
-        
+
 //        $serializedData = serialize($logData);
 //        $sql = "INSERT INTO `" . _DB_PREFIX_ . "api_logs` (`log_data`) VALUES ('" . pSQL($serializedData) . "')";
 //        return \Db::getInstance()->execute($sql);
