@@ -17,8 +17,10 @@ abstract class BaseApiService
     {
         // Implement actual logging logic here, e.g., writing to a file or database
         echo "Request Log: " . $requestInfo . PHP_EOL;
-        //Db::getInstance()->execute()
+        // $db = \Db::getInstance();
         // $db->insert('request_log_table', ['request_info' => $requestInfo]);
+        // or use
+        // $this->insertLogToDatabase($requestInfo);
         // Replace with actual database logging implementation
 
     }
@@ -32,7 +34,10 @@ abstract class BaseApiService
     {
         // Implement actual logging logic here, e.g., writing to a file or database
         echo "Response Log: " . $responseInfo . PHP_EOL;
+        // $db = \Db::getInstance();
         // $db->insert('response_log_table', ['response_info' => $responseInfo]);
+        // or use
+        // $this->insertLogToDatabase($responseInfo);
         // Replace with actual database logging implementation
 
     }
@@ -44,8 +49,6 @@ abstract class BaseApiService
      */
     private function insertLogToDatabase($logData)
     {
-        echo "Response Log: " . $logData . PHP_EOL;
-
         // Use PrestaShop's Db class to insert log data into the database
 //        $date = date('Y-m-d H:i:s');
 //        $serializedData = serialize($logData);
@@ -53,7 +56,6 @@ abstract class BaseApiService
 //            '".$date."',
 //            '".addslashes($serializedData)."'
 //        )";
-//
 //        return Db::getInstance()->execute($sql);
     }
 }
