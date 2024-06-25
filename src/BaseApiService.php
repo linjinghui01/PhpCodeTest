@@ -2,60 +2,54 @@
 
 declare(strict_types=1);
 
-//Use PrestaShop's
-//require __DIR__ . '/_path_to_prestashop_root_/bootstrap.php';
-//include_once(_PS_CONFIG_DIR_ . 'autoload.php');
 
 abstract class BaseApiService
 {
     /**
-     * Logs the request information.
+     * Logs the request information to the PrestaShop database.
      *
-     * @param string $requestInfo Information about the request.
+     * @param string $endpoint API endpoint being called.
+     * @param array $requestData The request data being sent.
      */
-    protected function logRequest(string $requestInfo): void
+    protected function logRequest(string $endpoint, array $requestData): void
     {
-        // Implement actual logging logic here, e.g., writing to a file or database
-        echo "Request Log: " . $requestInfo . PHP_EOL;
-        // $db = \Db::getInstance();
-        // $db->insert('request_log_table', ['request_info' => $requestInfo]);
-        // or use
-        // $this->insertLogToDatabase($requestInfo);
-        // Replace with actual database logging implementation
-
+        $logData = [
+            'type' => 'request',
+            'data' => $requestData,
+            'created_at' => date('Y-m-d H:i:s')
+        ];
+        $this->insertLogToDatabase($logData);
     }
 
     /**
-     * Logs the response information.
+     * Logs the response information to the PrestaShop database.
      *
-     * @param string $responseInfo Information about the response.
+     * @param string $endpoint API endpoint being called.
+     * @param array $responseData The response data received.
      */
-    protected function logResponse(string $responseInfo): void
+    protected function logResponse(array $responseData): void
     {
-        // Implement actual logging logic here, e.g., writing to a file or database
-        echo "Response Log: " . $responseInfo . PHP_EOL;
-        // $db = \Db::getInstance();
-        // $db->insert('response_log_table', ['response_info' => $responseInfo]);
-        // or use
-        // $this->insertLogToDatabase($responseInfo);
-        // Replace with actual database logging implementation
-
+        $logData = [
+            'type' => 'response',
+            'data' => $responseData,
+            'created_at' => date('Y-m-d H:i:s')
+        ];
+        $this->insertLogToDatabase($logData);
     }
 
     /**
      * Inserts log data into the database.
      *
-     * @param string $logData The data to be inserted into the log table.
+     * @param array $logData The data to be inserted into the log table.
      */
-    private function insertLogToDatabase($logData)
+    private function insertLogToDatabase(array $logData): void
     {
         // Use PrestaShop's Db class to insert log data into the database
-//        $date = date('Y-m-d H:i:s');
-//        $serializedData = serialize($logData);
-//        $sql = "INSERT INTO "._DB_PREFIX_."api_logs (date_add, log_data) VALUES (
-//            '".$date."',
-//            '".addslashes($serializedData)."'
-//        )";
-//        return Db::getInstance()->execute($sql);
+        $serializedData = serialize($logData);
+//        // use pSQL    PSQL function to avoid SQL injection
+//        $sql = "INSERT INTO `" . _DB_PREFIX_ . "api_logs` (`log_data`) VALUES ('" . pSQL($serializedData) . "')";
+//        // 使用 PrestaShop 的 Db 类执行 SQL 语句
+//        return \Db::getInstance()->execute($sql);
     }
+
 }
