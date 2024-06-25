@@ -1,10 +1,7 @@
 <?php
 
-require_once 'vendor/autoload.php';
-require_once 'BaseApiService.php';
-require_once 'FruitApiService.php';
-
-use \FruitApiService;
+require_once '../vendor/autoload.php';
+require_once '../src/Services/FruitApiService.php';
 
 $fruitApiService = new FruitApiService();
 

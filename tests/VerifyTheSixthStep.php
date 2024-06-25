@@ -1,6 +1,6 @@
 <?php
 
-require_once 'BracketValidator.php';
+require_once '../src/BracketValidator.php';
 
 $validator = new BracketValidator();
 

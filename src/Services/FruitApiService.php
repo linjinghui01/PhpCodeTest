@@ -1,13 +1,12 @@
 <?php
 
 declare(strict_types=1);
-
 require_once 'BaseApiService.php';
-require_once 'vendor/autoload.php';
+require_once '../vendor/autoload.php';
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
-use Psr\Http\Message\ResponseInterface;
+var_dump(class_exists('GuzzleHttp\Client'));
 
 class FruitApiService extends BaseApiService
 {
